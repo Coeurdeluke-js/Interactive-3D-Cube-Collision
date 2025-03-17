@@ -11,6 +11,54 @@ body {
     position: relative;
 }
 
+/* Presentation overlay */
+.presentation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeInOut 4s ease-in-out forwards;
+}
+
+.presentation-content {
+    text-align: center;
+}
+
+.project-title {
+    font-size: 3.5rem;
+    color: #fafafa;
+    font-weight: 600;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: titleFade 3s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+.highlight {
+    color: #ec4d58;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes titleFade {
+    0% { opacity: 0; transform: translateY(20px); }
+    40% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
 /* Screen edge gradient overlays */
 .edge-gradient {
     position: fixed;
@@ -145,8 +193,10 @@ body {
     border-radius: 5px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    white-space: nowrap;
+    line-height: 1.5;
     z-index: 10;
+    width: auto;
+    max-width: 90%;
 }
 
 .controls i {
@@ -201,6 +251,10 @@ body {
         font-size: 14px;
         padding: 8px 15px;
     }
+    
+    .project-title {
+        font-size: 2.8rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -240,7 +294,12 @@ body {
     
     .controls {
         font-size: 12px;
-        padding: 6px 12px;
-        bottom: 10px;
+        padding: 10px 15px;
+        bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .project-title {
+        font-size: 2.2rem;
     }
 }
