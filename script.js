@@ -3,6 +3,7 @@ const ball = document.querySelector('.ball');
 const cube = document.querySelector('.cube');
 const faces = document.querySelectorAll('.face');
 const scene = document.querySelector('.scene');
+const presentationOverlay = document.querySelector('.presentation-overlay');
 
 // Add edge gradient elements to the DOM
 function createEdgeGradients() {
@@ -23,6 +24,17 @@ const leftEdge = document.querySelector('.edge-gradient.left');
 const rightEdge = document.querySelector('.edge-gradient.right');
 const topEdge = document.querySelector('.edge-gradient.top');
 const bottomEdge = document.querySelector('.edge-gradient.bottom');
+
+// Handle presentation overlay
+function setupPresentation() {
+    // Automatically hide the overlay after animation completes
+    setTimeout(() => {
+        presentationOverlay.style.display = 'none';
+    }, 4000);
+}
+
+// Run presentation setup
+setupPresentation();
 
 // Dynamic sizing based on viewport
 function updateCubeSize() {
