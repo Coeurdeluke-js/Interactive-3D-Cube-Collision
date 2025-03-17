@@ -284,7 +284,6 @@ document.addEventListener('mousemove', function(e) {
     showEdgeGradients(deltaX, deltaY);
 });
 
-// Fix touch event handlers
 cube.addEventListener('touchstart', function(e) {
     if (e.touches.length === 1) {
         isDragging = true;
@@ -293,7 +292,7 @@ cube.addEventListener('touchstart', function(e) {
         cube.classList.add('grabbing');
         e.preventDefault();
     }
-});
+}, { passive: false });  
 
 document.addEventListener('touchend', function() {
     isDragging = false;
@@ -319,7 +318,7 @@ document.addEventListener('touchmove', function(e) {
     showEdgeGradients(deltaX, deltaY);
     
     e.preventDefault();
-});
+}, { passive: false });  
 
 // Handle window resize for responsiveness
 window.addEventListener('resize', function() {
