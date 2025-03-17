@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Exo 2', sans-serif;
+    position: relative;
+}
+
+/* Screen edge gradient overlays */
+.edge-gradient {
+    position: fixed;
+    pointer-events: none; /* Let clicks pass through */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.edge-gradient.left {
+    top: 0;
+    left: 0;
+    width: 15vw;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(236, 77, 88, 0.4), rgba(236, 77, 88, 0));
+}
+
+.edge-gradient.right {
+    top: 0;
+    right: 0;
+    width: 15vw;
+    height: 100vh;
+    background: linear-gradient(to left, rgba(236, 77, 88, 0.4), rgba(236, 77, 88, 0));
+}
+
+.edge-gradient.top {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 15vh;
+    background: linear-gradient(to bottom, rgba(236, 77, 88, 0.4), rgba(236, 77, 88, 0));
+}
+
+.edge-gradient.bottom {
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 15vh;
+    background: linear-gradient(to top, rgba(236, 77, 88, 0.4), rgba(236, 77, 88, 0));
+}
+
+.scene {
+    width: 300px;
+    height: 300px;
+    perspective: 800px;
+    position: relative;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(45deg);
+    cursor: grab;
+}
+
+.cube.grabbing {
+    cursor: grabbing;
+}
+
+.cube .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ec4d58;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+    opacity: 0.7;
+}
+
+/* Face positioning */
+.cube .front {
+    transform: translateZ(150px);
+}
+
+.cube .back {
+    transform: rotateY(180deg) translateZ(150px);
+}
+
+.cube .right {
+    transform: rotateY(90deg) translateZ(150px);
+}
+
+.cube .left {
+    transform: rotateY(-90deg) translateZ(150px);
+}
+
+.cube .top {
+    transform: rotateX(90deg) translateZ(150px);
+}
+
+.cube .bottom {
+    transform: rotateX(-90deg) translateZ(150px);
+}
+
+/* Simple, subtle collision effect */
+.face.collision {
+    background-color: rgba(250, 250, 250, 0.2);
+    border-color: #fafafa;
+    box-shadow: inset 0 0 20px rgba(250, 250, 250, 0.5);
+}
+
+/* Ball styling with gentle transition */
+.ball {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ec4d58;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #ec4d58;
+}
+
+/* Simple ball collision effect */
+.ball.collision {
+    background-color: #fafafa;
+    box-shadow: 0 0 20px #fafafa;
+}
+
+.controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ccc;
+    font-family: 'Exo 2', sans-serif;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.controls i {
+    margin: 0 5px;
+    color: #ec4d58;
+}
+
+/* Improve 3D rendering and prevent flickering */
+.scene, .cube, .face, .ball {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .scene {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .cube .front {
+        transform: translateZ(125px);
+    }
+    
+    .cube .back {
+        transform: rotateY(180deg) translateZ(125px);
+    }
+    
+    .cube .right {
+        transform: rotateY(90deg) translateZ(125px);
+    }
+    
+    .cube .left {
+        transform: rotateY(-90deg) translateZ(125px);
+    }
+    
+    .cube .top {
+        transform: rotateX(90deg) translateZ(125px);
+    }
+    
+    .cube .bottom {
+        transform: rotateX(-90deg) translateZ(125px);
+    }
+    
+    .ball {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .controls {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scene {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .cube .front {
+        transform: translateZ(100px);
+    }
+    
+    .cube .back {
+        transform: rotateY(180deg) translateZ(100px);
+    }
+    
+    .cube .right {
+        transform: rotateY(90deg) translateZ(100px);
+    }
+    
+    .cube .left {
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+    
+    .cube .top {
+        transform: rotateX(90deg) translateZ(100px);
+    }
+    
+    .cube .bottom {
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+    
+    .ball {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .controls {
+        font-size: 12px;
+        padding: 6px 12px;
+        bottom: 10px;
+    }
+}
