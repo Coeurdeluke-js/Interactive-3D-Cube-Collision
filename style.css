@@ -303,3 +303,19 @@ body {
         font-size: 2.2rem;
     }
 }
+
+.presentation-logo {
+    max-width: 300px;
+    height: auto;
+    margin-top: 20px;
+    opacity: 0;
+    animation: logoFade 3s ease-in-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes logoFade {
+    0% { opacity: 0; transform: translateY(20px); }
+    40% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
